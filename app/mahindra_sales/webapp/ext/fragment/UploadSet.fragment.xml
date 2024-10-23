@@ -1,0 +1,65 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:macros="sap.fe.macros" xmlns:upload="sap.m.upload">
+	<VBox id="_IDGenVBox" core:require="{ handler: 'mahindrasales/ext/fragment/UploadSet'}">
+		<upload:UploadSet
+					
+					id="uploadSet"
+					core:require="{handler:'mahindrasales/ext/fragment/UploadSet'}"
+					instantUpload="false"
+					uploadEnabled="false"
+                    uploadButtonInvisible="true"
+					showIcons="true"
+					items="{
+								path: 'enquiryToFile',
+								parameters: {
+									$orderby: 'createdAt desc'
+								},
+								templateShareable: false}"
+				>
+					<upload:items>
+						<upload:UploadSetItem id="_IDGenUploadSetItem1"
+						
+							fileName="{fileName}"
+							mediaType="{mediaType}"
+							url="{url}"
+							thumbnailUrl="{
+								path: 'mediaType',
+								formatter: 'handler.formatThumbnailUrl'
+							}"
+							enabledEdit="false"
+							enabledRemove="true"						
+							openPressed="handler.onOpenPressed"
+							removePressed="handler.onRemovePressed"
+							
+						>
+							<upload:attributes>
+								<ObjectAttribute id="_IDGenObjectAttribute1"
+								
+									title="Uploaded By"
+									text="{createdBy}"
+									active="false"
+								/>
+								<ObjectAttribute id="_IDGenObjectAttribute2"
+								
+									title="Uploaded on"
+									text="{createdAt}"
+									active="false"
+								/>
+								<ObjectAttribute id="_IDGenObjectAttribute3"
+								
+
+									title="File Type"
+									text="{mediaType}"
+									active="false"
+								/>
+								<ObjectAttribute id="_IDGenObjectAttribute4"
+								
+									title="File Size"
+									text="{size}"
+									active="false"
+								/>
+							</upload:attributes>
+						</upload:UploadSetItem>
+					</upload:items>
+				</upload:UploadSet>
+	</VBox>
+</core:FragmentDefinition>

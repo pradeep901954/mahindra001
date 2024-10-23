@@ -1,0 +1,2 @@
+sap.ui.define(["sap/m/MessageToast"],function(e){"use strict";return{SendQ:async function(t){e.show("Quotation is Sent Successfully..!");debugger;let n="QuotationFunc";let a=t.getModel().bindContext(`/${n}(...)`);var o;var s=window.location.href;const u=/purchaseEnquiryUuid=([a-fA-F0-9-]+)/;const c=s.match(u);if(c){o=c[1];console.log(o)}a.setParameter("para",o);await a.execute();const i=a.getBoundContext();var r=i.getValue();debugger}}});
+//# sourceMappingURL=SendQ.js.map

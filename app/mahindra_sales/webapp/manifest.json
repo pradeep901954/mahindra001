@@ -1,0 +1,263 @@
+{
+  "_version": "1.65.0",
+  "sap.app": {
+    "id": "mahindrasales",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:lrop",
+      "version": "1.15.2",
+      "toolsId": "5480065f-c4a0-45e3-8b5a-1d1a9ca94f16"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/odata/v4/my/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "odataVersion": "4.0"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "Mahi_Obj-display": {
+          "semanticObject": "Mahi_Obj",
+          "action": "display",
+          "title": "{{flpTitle}}",
+          "subTitle": "{{flpSubtitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.120.17",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.fe.templates": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "mahindrasales.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      },
+      "@i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      }
+    },
+    "resources": {
+      "css": []
+    },
+    "routing": {
+      "config": {},
+      "routes": [
+        {
+          "pattern": ":?query:",
+          "name": "PurchaseEnquiryList",
+          "target": "PurchaseEnquiryList"
+        },
+        {
+          "pattern": "PurchaseEnquiry({key}):?query:",
+          "name": "PurchaseEnquiryObjectPage",
+          "target": "PurchaseEnquiryObjectPage"
+        }
+      ],
+      "targets": {
+        "PurchaseEnquiryList": {
+          "type": "Component",
+          "id": "PurchaseEnquiryList",
+          "name": "sap.fe.templates.ListReport",
+          "options": {
+            "settings": {
+              "contextPath": "/PurchaseEnquiry",
+              "variantManagement": "None",
+              "navigation": {
+                "PurchaseEnquiry": {
+                  "detail": {
+                    "route": "PurchaseEnquiryObjectPage"
+                  }
+                }
+              },
+              "controlConfiguration": {
+                "@com.sap.vocabularies.UI.v1.LineItem": {
+                  "tableSettings": {
+                    "type": "ResponsiveTable",
+                    "personalization": {
+                      "filter": false,
+                      "sort": true
+                    },
+                    "enableExport": false
+                  }
+                },
+                "@com.sap.vocabularies.UI.v1.LineItem#tableView": {
+                  "tableSettings": {
+                    "personalization": {
+                      "sort": true
+                    },
+                    "enableExport": false
+                  }
+                },
+                "@com.sap.vocabularies.UI.v1.LineItem#tableView1": {
+                  "tableSettings": {
+                    "enableExport": false
+                  }
+                },
+                "@com.sap.vocabularies.UI.v1.LineItem#tableView2": {
+                  "tableSettings": {
+                    "enableExport": false
+                  }
+                }
+              },
+              "views": {
+                "paths": [
+                  {
+                    "key": "tableView",
+                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#tableView"
+                  },
+                  {
+                    "key": "tableView1",
+                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#tableView1"
+                  },
+                  {
+                    "key": "tableView2",
+                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#tableView2"
+                  },
+                  {
+                    "key": "tableView3",
+                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#tableView3"
+                  }
+                ]
+              },
+              "initialLoad": "Enabled"
+            }
+          }
+        },
+        "PurchaseEnquiryObjectPage": {
+          "type": "Component",
+          "id": "PurchaseEnquiryObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "contextPath": "/PurchaseEnquiry",
+              "controlConfiguration": {
+                "enquiryToPVehicle/@com.sap.vocabularies.UI.v1.LineItem#VehicleDetails": {
+                  "tableSettings": {
+                    "enableExport": false,
+                    "enablePaste": false,
+                    "selectAll": true,
+                    "type": "GridTable"
+                  }
+                },
+                "enquiryToPVehicle/@com.sap.vocabularies.UI.v1.LineItem#VehicleDetails1": {
+                  "tableSettings": {
+                    "type": "GridTable",
+                    "enableExport": false
+                  }
+                }
+              },
+              "content": {
+                "body": {
+                  "sections": {
+                    "UploadSet": {
+                      "template": "mahindrasales.ext.fragment.UploadSet",
+                      "position": {
+                        "placement": "After",
+                        "anchor": "QuotationDetails1"
+                      },
+                      "title": "Documents"
+                    },
+                    "Comments": {
+                      "template": "mahindrasales.ext.fragment.Comments",
+                      "position": {
+                        "placement": "After",
+                        "anchor": "UploadSet"
+                      },
+                      "title": "Comments"
+                    }
+                  }
+                },
+                "footer": {
+                  "actions": {
+                    "f1": {
+                      "press": "mahindrasales.ext.controller.FooterSendQ.FooterSendQ",
+                      "visible": true,
+                      "enabled": true,
+                      "text": "Send Quotation"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "extends": {
+      "extensions": {
+        "sap.ui.controllerExtensions": {
+          "sap.fe.templates.ListReport.ListReportController": {
+            "controllerName": "mahindrasales.ext.controller.List_s"
+          },
+          "sap.fe.templates.ObjectPage.ObjectPageController": {
+            "controllerName": "mahindrasales.ext.controller.Obj_s"
+          }
+        }
+      }
+    }
+  },
+  "sap.fiori": {
+    "registrationIds": [],
+    "archeType": "transactional"
+  },
+  "sap.cloud": {
+    "public": true,
+    "service": "Mahindra_sales"
+  }
+}

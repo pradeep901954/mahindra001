@@ -1,0 +1,58 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:macros="sap.fe.macros" xmlns:suite="sap.suite.ui.commons">
+	<VBox id="_IDGenVBox2" core:require="{ handler: 'mahindrasales/ext/fragment/Comments'}" width="100%">
+        <Toolbar id="_IDGenToolbar">
+            <Title id="_IDGenTitle1" text="Enter Comments"/>
+            <ToolbarSpacer id="_IDGenToolbarSpacer1"/>
+            <Button id="_IDGenButton1" text="Browse History" press="handler.onBrowseHistoryPress"/>
+        </Toolbar>
+        
+       <TextArea 
+            id="_IDGenTextArea" 
+            showExceededText="true" 
+            maxLength="1000" 
+            width="100%" 
+            height="120px" 
+            value="{ path: 'comments'}"/>
+
+        
+
+        <Dialog 
+            id="commentHistoryDialog" 
+            title="Comment History" 
+            stretch="false" 
+            contentWidth="50%" 
+            afterClose="onCloseHistoryDialog"
+            afterOpen="onDialogOpen">
+
+            <customHeader>
+                <Toolbar id="_IDGenToolbar1">
+                    <Title id="_IDGenTitle" text="Comment History"/>
+                    <ToolbarSpacer id="_IDGenToolbarSpacer2"/>
+                    <Button id="_IDGenButton" text="Close" press="handler.onCloseHistoryDialog"/>
+                </Toolbar>
+            </customHeader>
+
+            <VBox id="commentHistoryVBox" width="100%" height="400px">
+                <ScrollContainer id="_IDGenScrollContainer" height="100%" vertical="true" horizontal="false">
+                    <suite:Timeline 
+                        id="commentHistoryTimeline" 
+                        enableDoubleSided="true" 
+                        groupByType="None"      
+                        sortOldestFirst="true" 
+                        content="{myModel>/Files}" 
+                        showSearch="false"   
+                        showSort="false"         
+                        showHeaderBar="false">
+
+                        
+                        <suite:TimelineItem id="_IDGenTimelineItem1" 
+                            dateTime="{myModel>createdAt}" 
+                            title="{myModel>createdBy}" 
+                            text="{myModel>commentsText}" 
+                        />
+                    </suite:Timeline>
+                </ScrollContainer>
+            </VBox>
+        </Dialog>
+    </VBox>
+</core:FragmentDefinition>

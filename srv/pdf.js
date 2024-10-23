@@ -127,7 +127,7 @@ async function generatePDF() {
        .stroke();
 
     // Add footer text centered
-    const footerText = 'Thanks for  ';
+    const footerText = 'Thank You for Making Payment!';
     const footerWidth = doc.widthOfString(footerText);
     doc.fontSize(12).fillColor('black')
        .text(footerText, (doc.page.width - footerWidth) / 2, footerLineY + 10, {
